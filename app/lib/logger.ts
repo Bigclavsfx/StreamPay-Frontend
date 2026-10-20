@@ -38,10 +38,6 @@ function parseTraceparent(traceparent: string | null): string | undefined {
   return traceparent;
 }
 
-// Extract correlation context from headers
-export function extractCorrelationContext(headers: Headers): CorrelationContext {
-
-
 // Get current correlation context
 export function getCorrelationContext(): CorrelationContext | undefined {
   return correlationContext.getStore();
