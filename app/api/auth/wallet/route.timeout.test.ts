@@ -89,7 +89,7 @@ function signChallenge(challenge: string, privateKey: crypto.KeyObject): string 
 }
 
 const VALID_ADDRESS = "GCLH2SNM5MTV4TGNNOADLYOZJYIFBXTIDVSNW4XP3LEI2UQV2MZ46OD7";
-const VALID_CHALLENGE = "streampay_auth_1721800000000_abc123def";
+const VALID_CHALLENGE = "streampay-auth:v1:nKlQNln6SV4hJ6pm6jNMSBVlcqo7r8Pjcj9mqLA_oRg|http://localhost|2024-01-15T10:05:00.000Z";
 
 function makeGetRequest(search = "") {
   return new NextRequest(
@@ -170,7 +170,7 @@ describe("GET /api/auth/wallet — timeout", () => {
     const res = await GET(makeGetRequest(`?address=${VALID_ADDRESS}`));
     expect(res.status).toBe(200);
     const body = await res.json();
-    expect(body.challenge).toMatch(/^streampay_auth_/);
+    expect(body.challenge).toMatch(/^streampay-auth:v1:/);
   });
 
   it("invokes withTimeout with the challenge deadline constant", async () => {
